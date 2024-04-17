@@ -1,0 +1,77 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Infinite Scroll</title>
+        <style type="text/css">
+            
+    
+            .infinite-item,
+            .loading{
+              margin-bottom: 5px ;
+              margin-left: 50px;
+              margin-right: 3px;
+              background-color:black;
+              color: #fff;
+              text-align: center;
+              padding: 60px 0;
+              
+            }
+            .loading{
+              background-color: #333;
+            }
+        </style>
+        
+    </head>
+    <body>    
+      
+      
+     <a href="#"><div class="row  infinite-container">
+        
+        {% for number in numbers %}
+      
+        <div class="col">
+        
+        
+        <div class="infinite-item" style="color: white; width: 300px;"><img src="{{number.ad_image.url}}" alt="" height="200px;" style="width:250px;"><br><br><br> <br><span class="fw-bold">{{number.ad_name}}</span><br></div>
+        </div><br> <br>
+        {% endfor %}
+    <br> <br> <br>
+    
+    </div></a>
+
+   <div class="loading" style="display: none;">
+    </div>
+    {% if numbers.has_next %}
+    <a class="infinite-more-link" href="?page={{numbers.next_page_number}}">More</a>
+    {% endif %}
+    
+    
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js"></script>
+    <script>
+          
+      var infinite = new Waypoint.Infinite({
+          element: $('.infinite-container')[0],
+          onBeforePageLoad: function(){
+              $('.loading').show();
+              
+  
+          },
+          onAfterPageLoad: function ($items){
+              $('.loading').hide();
+  
+          },
+      });
+  </script>
+    </body>
+    </html>
+{% endblock %}

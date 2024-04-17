@@ -1,0 +1,20 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+
+    <form action="{% url 'ex_details' ex_data.id %}" style="background-color: black;">
+      <br>
+        <div class="container">
+        <nav aria-label="breadcrumb" style="width:950px;">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ex_data.ex_name}}</a></li>
+            </ol>
+          </nav>
+          
+        <img src="{{ex_data.ex_image.url}}"  class="img-fluid img-thumbnail shadow-sm" style="margin-left: 300px; height: 400px;">
+        <br><br><br>
+        <p style="color: white;">{{ex_data.ex_des}}</p>
+        </div>
+    </form>
+   
+{% endblock %}

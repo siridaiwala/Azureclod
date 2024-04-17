@@ -1,0 +1,51 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<style>
+.not-visible{
+    display: none;
+}
+
+</style>
+<div style="background-color: black;">
+<div class="container my-5">
+    <div class="row">
+     <div class="col-sm-3">
+       <div class="dropdown">
+           <nav>
+               <ul>
+                   <li><a href="{% url 'menu' %}">All items</a></li>
+                   <li onclick="Function()"><a href="#">Veg</a></li>
+                        <ul>
+                            <li class="not-visible" id='r'><a href="{% url 'menu_item' 'Rice' %}">Rice</a></li>
+                            <li class="not-visible" id='r'><a href="{% url 'menu_item' 'Starter' %}">Starter</a></li>
+                        </ul>
+               </ul>
+           </nav>
+       </div>
+     </div>
+     <div class="col-sm-8">
+         <div class="row">
+      {% for m in menu_info %}
+      <div class="col-sm-4 text-center mb-4">
+       <a href="{% url 'food_item' m.id %}" class="btn"><div class="item" style="color: white;"><img src="{{m.food_image.url}}" alt="" height="200px"><br><span class="fw-bold">{{m.title}}</span><br><span class="fs-5">Rs. {{m.offer_price}}</span></div></a>
+      </div>
+      {% endfor %}
+         </div>
+     </div>
+    </div>
+   </div>
+</div>
+<script>
+    function Function(){
+            var x=document.getElementById("r");
+            
+            if (x.style.display == "none") {
+                x.style.display = "block";
+            }
+            else {
+            x.style.display = "none";
+            }
+        }
+        
+</script>
+{% endblock %}

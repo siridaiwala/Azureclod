@@ -1,0 +1,42 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<center>
+    <div class="card" style="margin-top: 150px; width: 800px; background-color:black; height: 400px;">
+    <b style="color: whitesmoke; margin-top: 20px;">{{error}}</b>
+    {% if request.session.userform %}
+
+<h6 style="color: white;">Hello {{ request.session.userform }}, you are  already logged in </h6><br> <br> 
+
+<form action ="{% url 'logout_data' %}" method = "POST">
+    {% csrf_token %}
+    
+    <input type ="submit" value = "logout"><br> <br>
+</form>
+
+{% else %}
+
+
+<form action="{% url 'login_data' %}" method ="POST" >
+    
+    {% csrf_token %}
+    
+   
+    <h2 style="margin-top: 10px; color: whitesmoke;">Login page</h2><br>
+    
+    
+    <label for="username" style="margin-right: 250px; color: whitesmoke;" >USERNAME:</label><br>
+    <input type="text" id="username" name="username" style="width: 330px;" placeholder="Username" required><br> <br>
+    <label for="password1" style="margin-right: 250px; color: whitesmoke;" >PASSWORD:</label><br>
+    <input type="password" id="password1" name="password1" style="width: 330px;" placeholder="Password" required> <br> <br>
+    <input type="submit" value="Login" style="color:black; width: 100px;" > <br><br>
+    
+</form>
+
+<a href="{% url 'home' %}"><button type="button" class="btn btn-white" style="width: 160px; margin-left: 20px; color: black;"><i class="fas fa-home"></i>Back to home</button></a>
+{% endif %}
+
+<br>
+</div>
+    </center>
+
+{% endblock %}

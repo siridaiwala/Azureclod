@@ -1,0 +1,114 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <style>
+    .element{
+      text-decoration:line-through;
+      
+    }
+    
+  </style>
+  <!--veg-->
+  <h2 style="text-align: center;">Vegetarian Food</h2>
+<div style="background-color: black;">
+    <div class="mx-3">
+        
+        
+        <div class="slider">
+         {% for v in veg %}
+         <a href="{% url 'food_item' v.id %}" class="btn"><div class="item" style="color: white;"><img src="{{v.food_image.url}}" alt="" height="200px"><br><span class="fw-bold">{{v.title}}</span><br><span class="fs-5">Rs. {{v.offer_price}}</span><span class="element" style="margin-left: 15px;">Rs. {{v.price}}</span></div></a>
+         
+         {% endfor %}
+        </div>
+       </div>
+       </div><br><br>
+       
+      <!--nonveg-->
+       <h2 style="text-align: center;">Non Veg Food</h2>
+       <div style="background-color: black;">
+        <div class="mx-3">
+            
+            
+            <div class="slider">
+             {% for n in nonveg %}
+             <a href="{% url 'food_item' n.id %}" class="btn"><div class="item" style="color: white;"><img src="{{n.food_image.url}}" alt="" height="200px"><br><span class="fw-bold">{{n.title}}</span><br><span class="fs-5">Rs. {{n.offer_price}}</span><span class="element" style="margin-left: 15px;">Rs. {{n.price}}</span></div></a>
+             
+             {% endfor %}
+            </div>
+           </div>
+           </div><br><br>
+           <!--desserts-->
+           <h2 style="text-align: center;">Desserts</h2>
+       <div style="background-color: black;">
+        <div class="mx-3">
+            
+            
+            <div class="slider">
+             {% for d in desserts %}
+             <a href="{% url 'food_item' d.id %}" class="btn"><div class="item" style="color: white;"><img src="{{d.food_image.url}}" alt="" height="200px"><br><span class="fw-bold">{{d.title}}</span><br><span class="fs-5">Rs. {{d.offer_price}}</span><span class="element" style="margin-left: 15px;">Rs. {{d.price}}</span></div></a>
+             
+             {% endfor %}
+            </div>
+           </div>
+           </div><br><br>
+       
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/javascript">
+        $('.slider').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        arrows: false
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+    </script>
+</body>
+</html>
+{% endblock %}

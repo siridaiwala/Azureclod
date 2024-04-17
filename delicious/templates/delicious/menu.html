@@ -1,0 +1,37 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<div style="background-color: black;">
+<div class="container my-5">
+    <div class="row">
+     <div class="col-sm-3">
+       <div class="list-group" style="margin-top: 60px;">
+           <a href="{% url 'menu' %}" class="list-group-item list-group-item-action ">
+             All Items
+           </a>
+           <a href="{% url 'menu_item' 'V' %}" class="list-group-item list-group-item-action">Vegetarian</a>
+           <a href="{% url 'menu_item' 'N' %}" class="list-group-item list-group-item-action">Non Veg</a>
+           <a href="{% url 'menu_item' 'Rice' %}" class="list-group-item list-group-item-action">Main Course</a>
+           <a href="{% url 'menu_item' 'Starter' %}" class="list-group-item list-group-item-action">Starter</a>
+          
+           
+           <a href="{% url 'menu_item' 'D' %}" class="list-group-item list-group-item-action">Desserts</a>
+           <a href="{% url 'menu_item' 'below' %}" class="list-group-item list-group-item-action">Below Rs 500</a>
+           <a href="{% url 'menu_item' 'above' %}" class="list-group-item list-group-item-action">Above Rs 500</a>
+          
+          
+           
+         </div>
+     </div>
+     <div class="col-sm-8">
+         <div class="row">
+      {% for m in menu_info %}
+      <div class="col-sm-4 text-center mb-4">
+       <a href="{% url 'food_item' m.id %}" class="btn"><div class="item" style="color: white;"><img src="{{m.food_image.url}}" alt="" height="200px"><br><span class="fw-bold">{{m.title}}</span><br><span class="fs-5">Rs. {{m.offer_price}}</span></div></a>
+      </div>
+      {% endfor %}
+         </div>
+     </div>
+    </div>
+   </div>
+</div>
+{% endblock %}

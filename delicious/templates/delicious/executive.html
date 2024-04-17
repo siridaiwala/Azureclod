@@ -1,0 +1,24 @@
+{% extends 'delicious/base.html' %}
+{% block content %}
+<h2 style="text-align: center;">Executive Members</h2> <br> <br>
+<div style="background-color: black;">
+<div class="row row-cols-1 row-cols-md-4 g-4 mx-1">
+    {% for ex in executive_info %}
+       <div class="col">
+         <a href="{% url 'ex_details' ex.id %}"><div class="card h-100" style="width:250px; margin-top: 10px;">
+           <img src="{{ ex.ex_image.url }}" width="250" height="360" class="img-fluid img-thumbnail shadow-sm">
+           <div class="card-body" style="background-color: black;">
+             <h5 class="card-title" style="text-align: center; color: white;">{{ex.ex_name}}</h5>
+             <p class="card-text" style="text-align: center; color: white;">{{ex.ex_designation}}</p>
+           </div>
+           
+         </div>
+         </a>
+       </div>
+       
+    {% endfor%}
+    </div>
+
+    <br> <br>
+</div>
+{% endblock %}
